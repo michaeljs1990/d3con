@@ -7,7 +7,9 @@ balances that are zero since poloniex supports some
 """
 import os
 
-class BalanceCommand(object):
+from d3con.base_command import BaseCommand
+
+class BalanceCommand(BaseCommand):
     """
     Check that your credentials work by trying to access
     one of the private API methods.
@@ -17,7 +19,7 @@ class BalanceCommand(object):
         """
         Setup the client
         """
-        self.client = client
+        super(BalanceCommand, self).__init__(client, args)
 
     def run(self):
         """

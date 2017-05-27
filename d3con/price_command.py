@@ -7,7 +7,7 @@ import os
 
 from d3con.base_command import BaseCommand
 
-class SellCommand(BaseCommand):
+class PriceCommand(BaseCommand):
     """
     Risky stuff going on in here. This command lets you
     sell your coins for whatever price you want.
@@ -17,18 +17,7 @@ class SellCommand(BaseCommand):
         """
         Setup the client
         """
-        super(SellCommand,self).__init__(client, args)
-
-    def validate(self, pair):
-        """
-        Check if you are passing in a valid pair.
-        Should make this better so it tells you to
-        run another command to see what all the valid
-        pairs are.
-        """
-        if pair not in self.client.returnTicker():
-            print pair + " is not a valid pair."
-            exit(1)
+        super(PriceCommand,self).__init__(client, args)
 
     def inform(self, pair, rate, amnt):
         """

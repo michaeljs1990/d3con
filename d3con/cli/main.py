@@ -7,6 +7,7 @@ from inspect import getdoc
 
 from d3con.client import Client
 from d3con.balance_command import BalanceCommand
+from d3con.price_command import PriceCommand
 from d3con.sell_command import SellCommand
 
 class D3con(object):
@@ -14,6 +15,7 @@ class D3con(object):
     Poloniex command line trading.
     Usage:
         d3con balance
+        d3con price <pair>
         d3con sell <pair> <rate> <amount>
 
     Options:
@@ -35,7 +37,9 @@ class D3con(object):
         elif arguments.get('sell'):
             sell_cmd = SellCommand(client, arguments)
             sell_cmd.run()
-
+        elif arguments.get('price'):
+            sell_cmd = PriceCommand(client, arguments)
+            sell_cmd.run()
 
 
 def main():
