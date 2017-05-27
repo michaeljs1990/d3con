@@ -1,13 +1,11 @@
 """
-Include and merge docker-compose configurations into a single file.
-Given a docker-compose.yml file, fetch each configuration in the include
-section and merge it into a base docker-compose.yml. If any of the included
-files have include sections continue to fetch and merge each of them until
-there are no more files to include.
+Get the given balance of your account. This is not
+yet able to be configured but has what I believe to
+be a sane default. If will not show you any of your
+balances that are zero since poloniex supports some
+100 coins or so.
 """
 import os
-
-from d3con.client import Client
 
 class BalanceCommand(object):
     """
@@ -15,12 +13,11 @@ class BalanceCommand(object):
     one of the private API methods.
     """
 
-    def __init__(self, args):
+    def __init__(self, client, args):
         """
         Setup the client
         """
-        wrapper = Client()
-        self.client = wrapper.get_client()
+        self.client = client
 
     def run(self):
         """
