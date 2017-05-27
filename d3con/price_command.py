@@ -24,7 +24,7 @@ class PriceCommand(BaseCommand):
         to a file. Should make logging to file the 
         default action in the future and this optional.
         """
-        print '{}: current: {} low: {} high: {}'.format(pair, m.get('last'), m.get('low24hr'), m.get('high24hr'))
+        print '{}: current: {} low24h: {} high24h: {}'.format(pair, m.get('last'), m.get('low24hr'), m.get('high24hr'))
 
     def run(self):
         """
