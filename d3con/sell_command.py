@@ -16,10 +16,40 @@ class SellCommand(object):
         Setup the client
         """
         self.client = client
+        self.args = args
+
+    def validate(self, pair):
+        """
+        Check if you are passing in a valid pair.
+        Should make this better so it tells you to
+        run another command to see what all the valid
+        pairs are.
+        """
+        if pair not in self.client.returnTicker():
+            print pair + " is not a valid pair."
+            exit(1)
+
+    def inform(self, pair, rate, amnt):
+        """
+        Log to the commandline the order that you
+        are going to make. Mostly useful for logging
+        to a file. Should make logging to file the 
+        default action in the future and this optional.
+        """
+        split = pair.split('_')
+        print 'Selling {} {} for {} {} each'.format(amnt, split[1], rate, split[0])
 
     def run(self):
         """
         Sell a given curreny pair with a market order.
-        """
 
-        self.client.sell("LTC/BTC", rate, amount, orderType)
+        TODO: valid_pairs should be cached.
+        """
+        pair = self.args.get('<pair>')
+        rate = self.args.get('<rate>')
+        amnt = self.args.get('<amount>')
+
+        self.validate(pair)
+        self.inform(pair, rate, amnt)
+        
+        self.client.sell(pair, rate, amnt)

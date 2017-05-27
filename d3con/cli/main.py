@@ -13,7 +13,8 @@ class D3con(object):
     """
     Poloniex command line trading.
     Usage:
-        d3con <COMMAND> [--account ACCOUNT]
+        d3con balance
+        d3con sell <pair> <rate> <amount>
 
     Options:
         --account   Account to use from config.yml file 
@@ -28,11 +29,10 @@ class D3con(object):
         doc = getdoc(self)
         arguments = docopt(doc)
 
-        cmd = arguments.get('<COMMAND>')
-        if cmd == 'balance':
+        if arguments.get('balance'):
             balance_cmd = BalanceCommand(client, arguments)
             balance_cmd.run()
-        elif cmd == 'sell':
+        elif arguments.get('sell'):
             sell_cmd = SellCommand(client, arguments)
             sell_cmd.run()
 
