@@ -9,7 +9,7 @@ import os
 
 from d3con.client import Client
 
-class ValidateCommand(object):
+class BalanceCommand(object):
     """
     Check that your credentials work by trying to access
     one of the private API methods.
@@ -24,6 +24,7 @@ class ValidateCommand(object):
 
     def run(self):
         """
-        Check your balances
+        Check your balances and filter out accounts that are empty
         """
-        print self.client.returnBalances()
+        for coin, price in self.client.returnBalances().iteritems():
+            if price != '0.00000000': print coin + ": " + price
