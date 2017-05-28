@@ -9,6 +9,7 @@ from d3con.client import Client
 from d3con.balance_command import BalanceCommand
 from d3con.price_command import PriceCommand
 from d3con.sell_command import SellCommand
+from d3con.list_margins_command import ListMarginsCommand
 
 class D3con(object):
     """
@@ -17,14 +18,17 @@ class D3con(object):
         d3con balance
         d3con price <pair>
         d3con sell <pair> <rate> <amount>
+        d3con list-margins
 
     Options:
         --account   Account to use from config.yml file 
         --verbose   Show debug output
 
     Commands:
-        validate    check that you can connect to the Poloniex API
-        sell        sell coins at a given value on the Poloniex Exchange
+        validate        check that you can connect to the Poloniex API
+        sell            sell coins at a given value on the Poloniex Exchange
+        price           get the price of a given market (e.x. BTC_DOGE)
+        list-margins    get a list of all current open margin positions
     """
 
     def __init__(self, client):
@@ -40,6 +44,9 @@ class D3con(object):
         elif arguments.get('price'):
             sell_cmd = PriceCommand(client, arguments)
             sell_cmd.run()
+        elif arguments.get('list-margins'):
+            list_margins_cmd = ListMarginsCommand(client, arguments)
+            list_margins_cmd.run()
 
 
 def main():
