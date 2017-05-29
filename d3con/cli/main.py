@@ -20,7 +20,8 @@ class D3con(object):
         d3con price <pair>
         d3con sell <pair> <rate> <amount>
         d3con list-margins
-        d3con close-margin <type>
+        d3con close-margin help
+        d3con close-margin <type> <pair> [<args>...]
 
     Options:
         --account   Account to use from config.yml file 

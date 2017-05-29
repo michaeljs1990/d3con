@@ -3,6 +3,7 @@
     Pip module setup
 """
 from setuptools import setup
+from setuptools import find_packages
 
 INSTALL_REQUIRES = [
     'docopt >= 0.6.1, < 0.7',
@@ -17,7 +18,7 @@ setup(name='d3con',
       author_email='michaelj1990@gmail.com',
       license='MIT',
       install_requires=INSTALL_REQUIRES,
-      packages=["d3con", "d3con/cli"],
+      packages=find_packages(),
       entry_points={
         'console_scripts': [
             'd3con=d3con.cli.main:main',

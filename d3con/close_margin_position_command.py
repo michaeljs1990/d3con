@@ -16,17 +16,20 @@ from docopt import docopt
 from inspect import getdoc
 
 from d3con.base_command import BaseCommand
+from d3con.close_margin.high_low_algo import HighLowAlgo
 
 class CloseMarginPositionCommand(BaseCommand):
     """
     Usage:
         d3con close-margin help
+        d3con close-margin hl <pair> <high> <low>
 
     Options:
         --verbose   Show debug output
 
     Commands:
         help    you know what this does
+        hl      monitor the price and when the high or low price is met close
     """
 
     def __init__(self, client, args):
@@ -43,3 +46,7 @@ class CloseMarginPositionCommand(BaseCommand):
 
         if arguments.get('help'):
             print doc
+        if arguments.get('hl'):
+            self.validate(arguments.get('<pair>'))
+            high_low_algo = HighLowAlgo(self.client, arguments)
+            high_low_algo.run()
